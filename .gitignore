@@ -1,0 +1,30 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# parcel build output
+/dist
+/.parcel-cache
+
+# environment files
+.env
+.env.local
+.env.*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor directories and files
+.vscode
+.idea
+.DS_Store
+*.swp
+*.swo
+*.swn
+*.swm
+
+# optional: OS-specific files
+Thumbs.db
