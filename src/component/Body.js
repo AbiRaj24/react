@@ -1,4 +1,5 @@
-import Card from "./Card";
+import useCheckOnlineStatus from "../../utils/useCheckOnlineStatus";
+import Card, { withPromotedLabel } from "./Card";
 import Shimmer from "./shimmer";
 //import ResObj from "../../utils/constraint";
 import { useState, useEffect } from "react";
@@ -10,17 +11,22 @@ const Body = () => {
   //search box
   const [searchText, setSearchText] = useState("");
 
+  //higher order function
+  const RestaurantCardPromoted = withPromotedLabel(Card);
+
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     //const data = await fetch(
-     // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.9584554&lng=79.38850269999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.9584554&lng=79.38850269999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     //);
-
-    const data=await fetch("https://swiggy-api-4c740.web.app/swiggy-api.json ")
-   // const data=await fetch("https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=11.1017705&lng=79.6525686&carousel=true&third_party_vendor=1");
+    //https://swiggy-api-4c740.web.app/swiggy-api.json
+    const data = await fetch(
+      "https://swiggy-api-4c740.web.app/swiggy-api.json"
+    );
+    // const data=await fetch("https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=11.1017705&lng=79.6525686&carousel=true&third_party_vendor=1");
     if (!data.ok) {
       throw new Error(`HTTP error! status: ${data.status}`);
     }
@@ -42,6 +48,16 @@ const Body = () => {
   //   return <Shimmer/>
   // }
   //ternary operator
+
+  const OnlineStatus = useCheckOnlineStatus();
+
+  if (OnlineStatus === false) {
+    console.log("offline");
+    return (
+      <h1 className="text-[50px] text-center">seems like you're offline</h1>
+    );
+  }
+
   return Restaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -56,13 +72,14 @@ const Body = () => {
             }}
           />
           <button
-            onClick={() =>
-            {
-              const filter=Restaurants.filter((res) => {
-               return res?.info?.name?.toLowerCase().includes(searchText.toLowerCase());
-              })
+            onClick={() => {
+              const filter = Restaurants.filter((res) => {
+                return res?.info?.name
+                  ?.toLowerCase()
+                  .includes(searchText.toLowerCase());
+              });
               setRestaurants(filter);
-              console.log(filter)
+              console.log(filter);
             }}
           >
             Search
@@ -82,7 +99,13 @@ const Body = () => {
       </div>
       <div className="res-container">
         {Restaurants.map((res) => (
-        <Link to={"restaurants/" + res?.info?.id} key={res?.info?.id}> <Card resData={res?.info}  /></Link> 
+          <Link to={"restaurants/" + res?.info?.id} key={res?.info?.id}>
+            {" "}
+            {res?.info?.veg?
+            (<RestaurantCardPromoted resData={res?.info} />)
+             :
+            (<Card resData={res?.info} />)}
+          </Link>
         ))}
       </div>
     </div>

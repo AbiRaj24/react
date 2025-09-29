@@ -19,4 +19,18 @@ const Card=(props)=>{
     </div>
 )}
 
+
+//higher order component
+
+export const withPromotedLabel=(Card)=>{
+return(props)=>{
+    return(
+        <div>
+        <label className="bg-black absolute m-2 p-2 text-white font-medium rounded-md">veg</label>
+        <Card {...props}/>
+        </div>
+    )
+}
+}
+
 export default Card;

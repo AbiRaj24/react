@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import {useNavigate,Link} from "react-router-dom";
-
+import useCheckOnlineStatus from "../../utils/useCheckOnlineStatus";
 
 
 
@@ -21,7 +21,7 @@ console.log("header called")
 const navigate=useNavigate();
 
 useEffect(()=>{console.log("useEffect render")},[])
-
+const onlineStatus=useCheckOnlineStatus();
 
   const [btnName, setBtnName] = useState("login");
   return (
@@ -30,8 +30,9 @@ useEffect(()=>{console.log("useEffect render")},[])
         <img alt="website logo" />
       </div>
       <nav>
-        <ul>
+        <ul className="">
           <li><Link to="/">Home</Link></li>
+          <li>online Status :{onlineStatus ? "green" : "red"} </li>
           <li>links</li>
           <li>Search</li>
           <li>Order</li>
