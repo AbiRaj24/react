@@ -1,11 +1,12 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
 import {useNavigate,Link} from "react-router-dom";
 import useCheckOnlineStatus from "../../utils/useCheckOnlineStatus";
+import UserContext from "../../utils/UseContext";
 
 
 
 const Header = () => {
-console.log("header called")
+
  
 //How use Effect render in difference uses
 
@@ -19,6 +20,11 @@ console.log("header called")
 //eg: useEffect(()=>{},[btnName])
 
 const navigate=useNavigate();
+
+//usecontext
+
+const sampleContext=useContext(UserContext);
+console.log(sampleContext);
 
 useEffect(()=>{console.log("useEffect render")},[])
 const onlineStatus=useCheckOnlineStatus();
@@ -36,7 +42,8 @@ const onlineStatus=useCheckOnlineStatus();
           <li>links</li>
           <li>Search</li>
           <li>Order</li>
-          <li>Delivery</li>
+          <li className="font-bold">{sampleContext.loggedUser}</li>
+          
           <li><Link to="/Contact">Contact us</Link></li>
           <li onClick={() => navigate("/EventLanding")}>event</li>
           <button

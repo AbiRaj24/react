@@ -23,10 +23,9 @@ const Body = () => {
     // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.9584554&lng=79.38850269999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     //);
     //https://swiggy-api-4c740.web.app/swiggy-api.json
-    const data = await fetch(
-      "https://swiggy-api-4c740.web.app/swiggy-api.json"
-    );
-    // const data=await fetch("https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=11.1017705&lng=79.6525686&carousel=true&third_party_vendor=1");
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.1017705&lng=79.6525686&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    
+//https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=11.1017705&lng=79.6525686&carousel=true&third_party_vendor=1
     if (!data.ok) {
       throw new Error(`HTTP error! status: ${data.status}`);
     }

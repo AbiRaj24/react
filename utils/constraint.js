@@ -42,6 +42,6 @@ let ResObj={
 export default ResObj;
 
 //511793
-export const Menu_URL="https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.1017705&lng=79.6525686&restaurantId=";
+//export const Menu_URL="https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.1017705&lng=79.6525686&restaurantId=";
 
-//export const Menu_URL="https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.1017705&lng=79.6525686&restaurantId=511793"
+export const Menu_URL="https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=11.1017705&lng=79.6525686&restaurantId=";

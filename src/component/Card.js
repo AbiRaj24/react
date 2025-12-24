@@ -1,8 +1,11 @@
-
+import {useContext} from "react";
+import UserContext from "../../utils/UseContext";
 
 
 const Card=(props)=>{
     const {id,name,cloudinaryImageId}=props.resData;
+
+    const {loggedUser}=useContext(UserContext);
     return(
     <div className="card-box">
         <div className="res-img">
@@ -13,6 +16,7 @@ const Card=(props)=>{
             <div className="dis-rate">
                  <h2></h2>
             <h2>{id}</h2>
+            <h2>name:{loggedUser}</h2>
             </div>
            
         </div>
@@ -21,12 +25,12 @@ const Card=(props)=>{
 
 
 //higher order component
-
+//get the card as a input => make some changes => return the card
 export const withPromotedLabel=(Card)=>{
-return(props)=>{
-    return(
+return(props)=>{//return function by higher order(enhance)
+    return(//return jsx
         <div>
-        <label className="bg-black absolute m-2 p-2 text-white font-medium rounded-md">veg</label>
+        <label className="bg-black absolute m-2 p-2 px-4 text-white font-medium rounded-md">veg</label>
         <Card {...props}/>
         </div>
     )
